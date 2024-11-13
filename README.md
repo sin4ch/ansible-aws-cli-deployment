@@ -4,6 +4,3 @@
     <img src="https://github.com/user-attachments/assets/2c51f116-91ae-4d78-a0fc-bb5d35449b7b"/>
 </div>
 
-<center>![aws_cli_ansible drawio (3)](https://github.com/user-attachments/assets/2c51f116-91ae-4d78-a0fc-bb5d35449b7b)</center>
-
-
