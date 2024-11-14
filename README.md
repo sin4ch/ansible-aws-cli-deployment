@@ -4,3 +4,13 @@
     <img src="https://github.com/user-attachments/assets/2c51f116-91ae-4d78-a0fc-bb5d35449b7b"/>
 </div>
 
+## Requirements
+---
+1. AWS CLI installed
+   Visit the official documentation for installation on WIndows and Mac [here.](https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html)
+   This guide will focus on installation on Ubuntu.
+
+
+   I'm currently using Ubuntu on Windows through WSL. So if you have WSL, skip the Windows setup link above
+   
+
