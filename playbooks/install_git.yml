@@ -1,0 +1,31 @@
+---
+- name: Install and configure Git
+  hosts: aws_ec2
+  become: true
+  gather_facts: true
+  vars_files:
+    - ../vars/main.yml
+  
+  tasks:
+    - name: Wait for system to be ready
+      wait_for_connection:
+        timeout: 300
+    
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+    
+    - name: Install Git
+      package:
+        name: git
+        state: "{{ git_version }}"
+    
+    - name: Verify Git installation
+      command: git --version
+      register: git_version_output
+      changed_when: false
+    
+    - name: Display Git version
+      debug:
+        msg: "{{ git_version_output.stdout }}"

@@ -1,0 +1,58 @@
+---
+- name: Provision AWS Infrastructure
+  hosts: localhost
+  connection: local
+  gather_facts: false
+  vars_files:
+    - ../vars/main.yml
+  
+  tasks:
+    - name: Ensure AWS key pair exists
+      amazon.aws.ec2_key:
+        name: "{{ key_name }}"
+        region: "{{ aws_region }}"
+      register: key_info
+    
+    - name: Save private key if newly created
+      copy:
+        content: "{{ key_info.key.private_key }}"
+        dest: "{{ key_name }}.pem"
+        mode: '0400'
+      when: key_info.changed and key_info.key.private_key is defined
+    
+    - name: Create security group
+      amazon.aws.ec2_security_group:
+        name: "{{ security_group_name }}"
+        description: "Security group for AutoGit instances"
+        region: "{{ aws_region }}"
+        rules:
+          - proto: tcp
+            ports: 22
+            cidr_ip: 0.0.0.0/0
+            rule_desc: allow SSH access
+      register: security_group
+    
+    - name: Launch EC2 instances
+      amazon.aws.ec2_instance:
+        name: "{{ instance_tags.Name }}"
+        key_name: "{{ key_name }}"
+        security_group: "{{ security_group_name }}"
+        instance_type: "{{ instance_type }}"
+        image_id: "{{ ami_id }}"
+        count: "{{ instance_count }}"
+        network:
+          assign_public_ip: true
+        wait: yes
+        state: running
+        tags: "{{ instance_tags }}"
+        region: "{{ aws_region }}"
+      register: ec2_instances
+    
+    - name: Wait for SSH access
+      wait_for:
+        host: "{{ item.public_ip_address }}"
+        port: 22
+        delay: 10
+        timeout: 320
+      loop: "{{ ec2_instances.instances }}"
+      when: ec2_instances.instances is defined

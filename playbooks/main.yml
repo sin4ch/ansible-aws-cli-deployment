@@ -1,0 +1,12 @@
+---
+- name: Provision EC2 instances
+  import_playbook: provision_ec2.yml
+  
+- name: Install Git on EC2 instances
+  import_playbook: install_git.yml
+
+- name: Include provisioning playbook
+  import_playbook: provision.yml
+
+- name: Include configuration playbook
+  import_playbook: configure.yml

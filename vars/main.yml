@@ -1,0 +1,14 @@
+---
+# AWS Configuration
+aws_region: us-east-1
+instance_type: t2.micro
+instance_count: 1
+key_name: autogit-key
+security_group_name: autogit-sg
+ami_id: ami-0c7217cdde317cfec  # Ubuntu 22.04 LTS
+instance_tags:
+  Name: AutoGit-Instance
+  Project: AutoGit
+
+# Application Configuration
+git_version: latest

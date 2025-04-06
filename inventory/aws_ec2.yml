@@ -1,0 +1,14 @@
+---
+plugin: aws_ec2
+regions:
+  - us-east-1
+filters:
+  tag:Project: AutoGit
+  instance-state-name: running
+keyed_groups:
+  - key: tags.Name
+    prefix: name
+hostnames:
+  - public_ip_address
+compose:
+  ansible_host: public_ip_address
