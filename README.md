@@ -79,8 +79,8 @@
   │   └── aws_ec2.yml             # AWS dynamic inventory configuration
   ├── playbooks/
   │   ├── main.yml                # Main playbook (imports other playbooks)
-  │   ├── provision.yml           # EC2 provisioning playbook
-  │   └── configure_git.yml       # Git installation playbook
+  │   ├── provision_ec2.yml           # EC2 provisioning playbook
+  │   └── install_git.yml       # Git installation playbook
   └── vars/
       └── main.yml                # Global variables
   ```
@@ -94,12 +94,12 @@
 
   ### Provision Instances Only
   ```
-  ansible-playbook playbooks/provision.yml
+  ansible-playbook playbooks/provision_ec2.yml
   ```
 
   ### Install Git Only
   ```
-  ansible-playbook playbooks/configure_git.yml
+  ansible-playbook playbooks/install_git.yml
   ```
 
   ### Verify Installation
