@@ -1,0 +1,87 @@
+# SSH Keys
+*.pem
+*.ppk
+id_rsa*
+*.key
+
+# AWS Credentials
+.aws/
+aws.json
+aws.yml
+aws.yaml
+credentials
+*_rsa
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# Ansible
+*.retry
+.ansible/
+ansible_runner/
+.vault_pass
+vault.key
+
+# Virtual Environment
+venv/
+ENV/
+env/
+.env
+
+# IDE and Editor files
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS specific files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.bak
+*.backup
+*~
+
+# Runtime data
+pids
+*.pid
+*.seed
+
+# Testing
+.coverage
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.pytest_cache/
